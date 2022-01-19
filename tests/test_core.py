@@ -3840,8 +3840,10 @@ ok
     ''', '''
       #include "header.h"
 
+      int foo = 11;
+
       int sidey() {
-        return 11;
+        return foo;
       }
     ''', 'other says 11.', 'int sidey();', force_c=True, **kwargs)
 
@@ -4082,11 +4084,12 @@ ok
       ''', side=r'''
         #include "header.h"
         static Class c("side");
-      ''', expected=['new main\nnew side\n', 'new side\nnew main\n'])
-    test()
+      ''', expected=['new main\nnew side\n', 'new side\nnew main\n'], need_reverse=False)
+    #test()
 
     print('check warnings')
     self.set_setting('ASSERTIONS', 2)
+    self.emcc_args += ['--profiling-funcs']
     test()
     # TODO: this in wasm
     # full = self.run_js('src.js')
