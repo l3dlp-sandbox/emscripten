@@ -20,7 +20,7 @@ See docs/process.md for more on how version tagging works.
 
 5.0.7 (in development)
 ----------------------
-- The emscripten_futux_wait API is now documented to explicitly allow spurious
+- The emscripten_futex_wait API is now documented to explicitly allow spurious
   wakeups. This was part of an internal change to improve inter-thread
   communication. (#26659)
 - mimalloc was updated to 3.3.1. (#26696)
@@ -31,10 +31,10 @@ See docs/process.md for more on how version tagging works.
   emscripten so folks can sill use it manually if needed.  If you are a user of
   this feature please let us know otherwise this may be deleted in a future
   release. (#26648)
-- The emscripten_futux_wait internals were improved to avoid unnecessary thread
-  wakeups.  As part of this change emscripten_futux_wait is now documented to
+- The emscripten_futex_wait internals were improved to avoid unnecessary thread
+  wakeups.  As part of this change emscripten_futex_wait is now documented to
   explicitly allow for returning EINTR when the wait is interrupted by an async
-  operation.  All callers of emscripten_futux_wait are advised to use a loop
+  operation.  All callers of emscripten_futex_wait are advised to use a loop
   to handle these types of spurious wakeups / interruptions. (#26659, #26735)
 - Attempting to use PTHREAD_PROCESS_SHARED when creating pthread primitives such
   as locks and condvars will now fail with ENOTSUP. (#26743)
